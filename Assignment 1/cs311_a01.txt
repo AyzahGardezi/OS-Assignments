@@ -1,0 +1,173 @@
+/******************************************************************************
+ * CS311. Assignmetn no. 1 
+ * Deadline: Thursday, 22 September 2022, 11:55pm.
+ * Keywords: C programming, strings, pointers, dynamic memory allocation.
+ ******************************************************************************/
+
+Note1: "string" in this document stands for a c-style string, i.e., an array of
+zero or more characters terminated by the null character ('\0'). A valid string may have 0, 1 or
+more characters.
+
+Note1b: You can use only two library functions: strlen() and strcpy(). Everything else you
+write yourself.
+
+Note2: Function returning addresses should make sure that the memory
+pointed to by those addresses is accessible after the function execution has
+finished!
+
+Note3: Always check for NULL pointers after allocating memory!
+This is important because dereferencing a null pointer will crash your program.
+
+Note4: You should not do any input (scanf)/output (printf) inside these functions. If you feel the
+need to do so for debugging purposes, go ahead by all means, but remove all printf/scanf
+statements from the file that you will submit!
+
+Note5: Do not change the function prototypes! They are there to guide you. You are required
+only to provide function definitions for these prototypes. For the word 'const' y0u can 
+lookup "type qualifiers" in C.
+
+/********************************************************************************/
+Question 1: Find if a string contains a certain character.
+
+Description:
+
+Write a function that checks if a string contains a certain character. It should have the
+following prototype:
+
+bool str_contains( const char* s, char c);
+
+
+Arguments:
+This function will receive a character pointer (s) pointing to a valid string and a character (c). 
+
+Working:
+I should search for the character (c) in the string (s) and return its findings.
+
+Return value:
+It should return true if it finds character (c) in string (s), false otherwise.
+
+Examples:
+str_contains ( "teeth", 'h') should return true.  // **Modified** 2nd arg is  now char in single quotes.
+str_contains ( "bot", 'd') should return false.  // **Modified** 2nd arg is  now char in single quotes.
+
+Note: I mistaked in class. Since C99 onwards, the standard does defind a "bool" type with
+possible values "true" and "false". You need to include stdbool.h to use it though.
+
+/********************************************************************************/
+Question 2: Find unique characters in a string. 
+
+Description:
+Write a function that takes a pointer to a valid string and returns how many unique characters are
+there in that string.
+
+
+int str_unique (const char *s);
+
+Arguments:
+The only argument is a character pointer (s) pointing to a valid string.
+
+Working:
+It should find the number of unique characters in the string (s), i.e., discard repititions.
+
+Return value:
+It should return the number of unique characters that it found in that string (s).
+
+Examples:
+str_unique ("teeth") should return 3.  // it has three unique characters: t, e, and h.
+str_unique ("bot") should return 3.
+
+
+/********************************************************************************/
+Question 3: Remove leading and trailing white spaces (space, tab, newline characters) from a string.
+
+Description:
+Returns a new copy of the passed string with leading and trailing white spaces removed.
+
+
+char * str_strip ( const char *s);
+
+Arguments:
+The only argument is a pointer to a valid string which may or may not have white spaces at its
+start and at its end.
+
+Working:
+This function gets passed a string which might have white spaces (space, tab, newline) at its start
+and at its end. It should return a new copy of this string with the leading and trailing white spaces
+removed. It shall not remove white spaces occurring inside the string. Just like the Python string
+strip() function.
+
+Return value:
+Returns a new copy of the string with no leading and trailing white spaces.
+
+Examples:
+str_strip ("     ding ding bell   ") should return "ding dong bell"
+
+/********************************************************************************/
+Question 4: The main function.
+
+Description:
+It should return the sum of unique characters (discarding the white spaces) of its command line
+arguments which do not contain a vowel ("aeiou").
+
+
+int main (int argc, char *argv[])
+
+Arguments:
+The first argument (argc) is the number command line arguments passed to it.
+The second argument (argv) is an array containg to pointers to each of the command line
+argument passed to this program.
+
+Working:
+This is the main function of your program. It will go through all its command line arguments,
+count unique characters in all of those which do not contain a vowel, and return the sum of
+these counts.
+
+Return value:
+Returns the sum of unique characters (excluding white spaces) in each cmd line arguments
+which do not contain a vowel.
+
+Examples:
+Assuming your executable file is titled a.out, running:
+
+./a.out sly "   rhythms  " fly in sync wow!!!!
+
+should return 16 because:
+- "sly" contains 3 (sly) unique characters,
+- "   rhythms  " contains 6 (rhytms), h appears twice and we discard the white space,
+- "fly" contains 3 (fly),
+- "in" contains 2 (in) unique characters but we don't count it in sum because it contains a vowel,
+- "sync" contains 4 (sync),
+- "wow!!!!", contains 3 (wo!), but we don't count it in sum because it contains a vowel.
+
+In bash shell you can check the value returned by the last command by typing the command
+"echo $?"  (without the quotes), and press enter.
+/******************************************************************************
+ * Instructions:
+ *  
+ * This is an individual assignment. While you can ask for explanations when you get stuck, you
+ * are not allowed to copy code from any source. Plagiarism will not only harm your learning in
+ * long term, but may also get you upto an F grade in the course.
+ *
+ * The submission platform I'll announce next week.
+ * You will submit only one file u2020xxx.c where xxx are the last
+ * three digits of your registration number. This file should contain the codes
+ * for all the above functions only. Nothing else.
+ * 
+ * Compile your programs with the -Wall option to the gcc. (You can google the option to
+ * activate all warnings in your favourite compiler/IDE.)
+ * The programs should compile without any warning or errors.
+ *
+ * Rubric:  50 marks in total.
+ * Q1 - 10 marks.
+ * Q2 - 10 marks.
+ * Q3 - 20 marks.
+ * Q4 - 10 marks.
+ *
+ * Penalties:
+ * Compiler error (-50 marks)
+ * Compiler warnings (-20 marks)
+ * Missed submission deadline (-30 marks)
+ * Not following any instruction (-30 marks)
+ *
+ * Obtained marks = max (0, marks+penalties).
+ ******************************************************************************/
